@@ -1,8 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./Home";
+import NavBar from "./NavBar";
+import ManageUsers from "./ManageUsers";
+import ManageEvents from "./ManageEvents";
 
 function App() {
-  return <h1>Project Client</h1>;
+  return (
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/manage-users" component={ManageUsers} />
+        <Route path="/manage-events" component={ManageEvents} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
