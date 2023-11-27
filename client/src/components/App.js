@@ -1,20 +1,31 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./Home";
 import NavBar from "./NavBar";
 import ManageUsers from "./ManageUsers";
 import ManageEvents from "./ManageEvents";
 
 function App() {
+  //Navbar functionality
+  const routes = createRoutesFromElements(
+    <Route path="/" element={<NavBar />}>
+      <Route index element={<Home />} />
+      <Route path="manage-users" element={<ManageUsers />} />
+      <Route path="manage-events" element={<ManageEvents />} />
+    </Route>
+  );
+
+  const router = createBrowserRouter(routes);
+
   return (
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/manage-users" component={ManageUsers} />
-        <Route path="/manage-events" component={ManageEvents} />
-      </Switch>
-    </Router>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
