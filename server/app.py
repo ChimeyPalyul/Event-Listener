@@ -9,7 +9,6 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-
 from models import Account, Registration, Opportunity 
 
 class Opportunities(Resource):
@@ -60,9 +59,9 @@ class OpportunityById(Resource):
 
         def delete(self, id):
             opportunity = Opportunity.query.filter_by(id=id).first()
-
             if not opportunity:
                 return {"error": "Event not found"}, 404
+            
             db.session.delete(opportunity)
             db.session.commit()
             return "", 204
