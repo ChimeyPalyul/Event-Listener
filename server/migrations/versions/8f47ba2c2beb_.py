@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e57ddd645f63
+Revision ID: 8f47ba2c2beb
 Revises: 
-Create Date: 2023-11-28 10:24:47.593771
+Create Date: 2023-11-28 13:10:37.694208
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e57ddd645f63'
+revision = '8f47ba2c2beb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,13 +31,13 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
-    sa.Column('start_date', sa.DateTime(), nullable=True),
-    sa.Column('end_date', sa.DateTime(), nullable=True),
+    sa.Column('start_date', sa.String(), nullable=True),
+    sa.Column('end_date', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_opportunities'))
     )
     op.create_table('registrations',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('registration_date', sa.DateTime(), nullable=False),
+    sa.Column('registration_date', sa.String(), nullable=False),
     sa.Column('account_id', sa.Integer(), nullable=False),
     sa.Column('opportunity_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['account_id'], ['accounts.id'], name=op.f('fk_registrations_account_id_accounts')),
