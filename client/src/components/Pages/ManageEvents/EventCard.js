@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 function EventCard({ title, description }) {
-  const [eventStatus, setEventStatus] = useState(false);
+  const [eventStatus, setEventStatus] = useState(true);
 
   function handleEventStatus() {
     setEventStatus(!eventStatus);
   }
+  const editButton = eventStatus ? "Edit Event" : "Update" 
   
 
   function handleEventUpdate() {}
@@ -19,16 +20,17 @@ function EventCard({ title, description }) {
           <>
             <h3>{title}</h3>
             <p>{description}</p>
+            <button onClick={handleEventStatus}>Edit Event</button> 
+            <button onClick={handleEventDelete}>Delete Event</button>
           </>
         ) : (
           <form onSubmit={handleEventUpdate}>
-            <input>Title</input>
-            <input>Description</input>
+            <input type='text' placeholder={title}/>
+            <input type='text' placeholder={description}/>
             <button type="submit">Submit</button>
+            <button onClick={handleEventStatus}>x</button>
           </form>
         )}
-        <button onClick={handleEventStatus}>Edit Event</button>
-        <button onClick={handleEventDelete}>Delete Event</button>
       </card>
     </div>
   );

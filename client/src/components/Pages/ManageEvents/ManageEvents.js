@@ -9,7 +9,7 @@ const ManageEvents = () => {
   useEffect(() => {
     fetch("/events")
       .then((r) => r.json())
-      .then(setEvents);
+      .then(data => setEvents(data));
   }, []);
 
   function handleFormStatus() {
