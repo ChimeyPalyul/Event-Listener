@@ -18,7 +18,7 @@ class Account(db.Model, SerializerMixin):
     role = db.Column(db.String)
 
     registrations = db.relationship('Registration', back_populates= 'account')
-    serialize_rules = ('registration.account',)
+    serialize_rules = ('registrations.account',)
 
     @validates('name')
     def validate_name(self,key,name):
@@ -58,12 +58,12 @@ class Opportunity(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
     description = db.Column(db.String)
-    start_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime)
+    start_date = db.Column(db.String)
+    end_date = db.Column(db.String)
 
     registrations = db.relationship('Registration', back_populates = 'opportunity')
 
-    serialize_rules = ('-registration.opportunity',)
+    serialize_rules = ('-registrations.opportunity',)
 
     @validates('description')
     def validate_description(self, key, description):
@@ -77,7 +77,7 @@ class Opportunity(db.Model, SerializerMixin):
 class Registration(db.Model, SerializerMixin):
     __tablename__ = 'registrations'
     id = db.Column(db.Integer, primary_key = True)
-    registration_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    registration_date = db.Column(db.String, nullable=False, default=datetime.utcnow)
 
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.id'), nullable = False)
     opportunity_id = db.Column(db.Integer, db.ForeignKey('opportunities.id'), nullable = False)
@@ -85,7 +85,7 @@ class Registration(db.Model, SerializerMixin):
     account = db.relationship('Account', back_populates = 'registrations')
     opportunity = db.relationship('Opportunity', back_populates = 'registrations')
 
-    serialize_rules = ('-account.registration', '-opportunity.registration',)
+    serialize_rules = ('-account.registrations', '-opportunity.registrations',)
 
     def __repr__(self):
         return f'<Registration {self.id}>'
