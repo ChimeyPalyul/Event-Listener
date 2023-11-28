@@ -12,13 +12,13 @@ class Account(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
-    _password_hash = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
     name = db.Column(db.String)
     email = db.Column(db.String)
     role = db.Column(db.String)
 
     registrations = db.relationship('Registration', back_populates= 'account')
-    serialize_rules = ('registration.account',)
+    serialize_rules = ('-registrations.account',)
 
     @validates('name')
     def validate_name(self,key,name):
@@ -63,7 +63,7 @@ class Opportunity(db.Model, SerializerMixin):
 
     registrations = db.relationship('Registration', back_populates = 'opportunity')
 
-    serialize_rules = ('-registration.opportunity',)
+    serialize_rules = ('-registrations.opportunity',)
 
     @validates('description')
     def validate_description(self, key, description):
@@ -85,7 +85,7 @@ class Registration(db.Model, SerializerMixin):
     account = db.relationship('Account', back_populates = 'registrations')
     opportunity = db.relationship('Opportunity', back_populates = 'registrations')
 
-    serialize_rules = ('-account.registration', '-opportunity.registration',)
+    serialize_rules = ('-account.registrations', '-opportunity.registrations',)
 
     def __repr__(self):
         return f'<Registration {self.id}>'
