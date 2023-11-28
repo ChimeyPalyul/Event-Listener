@@ -58,8 +58,8 @@ class Opportunity(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
     description = db.Column(db.String)
-    start_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime)
+    start_date = db.Column(db.String)
+    end_date = db.Column(db.String)
 
     registrations = db.relationship('Registration', back_populates = 'opportunity')
 
@@ -77,7 +77,7 @@ class Opportunity(db.Model, SerializerMixin):
 class Registration(db.Model, SerializerMixin):
     __tablename__ = 'registrations'
     id = db.Column(db.Integer, primary_key = True)
-    registration_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    registration_date = db.Column(db.String, nullable=False, default=datetime.utcnow)
 
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.id'), nullable = False)
     opportunity_id = db.Column(db.Integer, db.ForeignKey('opportunities.id'), nullable = False)
