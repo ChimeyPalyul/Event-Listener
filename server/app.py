@@ -78,7 +78,7 @@ class Accounts(Resource):
         try:
             new_account = Account(
                 username = data["username"],
-                password = data["password"],
+                password_hash = data["password"],
                 name = data["name"],
                 email = data["email"],
                 role = data["role"]

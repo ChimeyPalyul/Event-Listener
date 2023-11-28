@@ -20,7 +20,7 @@ def create_accounts():
     for _ in range(30):
         a = Account(
             username= fake.first_name(),
-            password='testpassword',
+            password_hash='testpassword',
             name= fake.name(),
             email=fake.email(),
             role= rc(ROLES)    
@@ -72,21 +72,33 @@ if __name__ == '__main__':
     with app.app_context():
         print("Starting seed...")
         # delete current data
-        #Account.query.delete()
+        print("clearing database")
+        Account.query.delete()
         Opportunity.query.delete()
-
+        Registration.query.delete()
+        print("database cleared")
         # create the database if not created
         db.create_all()
         # Seed code goes here!
         print("seeding accounts...")
         acc = create_accounts()
-        opp = create_opportunities()
-        reg = create_registration()
         db.session.add_all(acc)
-        db.session.add_all(opp)
-        db.session.add_all(reg)
         db.session.commit()
         print("finished seeding accounts")
+
+        print("seeding events...")
+        opp = create_opportunities()
+        db.session.add_all(opp)
+        print("finished seeding events")
+
+        print("seeding registrations...")
+
+        reg = create_registration()
+        db.session.add_all(reg)
+        print("finished seeding registrations")
+
+        print("finished seeding!!")
+
 
     # db.session.add(account1)
     # db.session.add(opportunity1)
