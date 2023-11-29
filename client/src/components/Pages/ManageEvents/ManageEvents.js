@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import EventCard from './EventCard'
 import EventForm from './EventForm'
 
+
 const ManageEvents = () => {
   const [events, setEvents] = useState([])
   const [formStatus, setFormStatus] =  useState(false)
@@ -48,14 +49,18 @@ const ManageEvents = () => {
   const eventFormButton = formStatus ? 'Cancel' : 'Add New Event'
 
   return (
-    <div className='event-cards-container'>
+    <>
       <h1 className = 'manage-events'>Manage Events</h1>
-      <button onClick={handleFormStatus} className='add-event-button'>{eventFormButton}</button>
+      <div className = 'button-container'>
+        <button onClick={handleFormStatus} className='add-event-button'>{eventFormButton}</button>
+      </div>
+      <div className='event-cards-container'>
       {formStatus ? <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus}/> : null}
       {events.map((event) => (
-            <EventCard key={event.id} handleDelete={handleDelete} event={event} onUpdate={handleUpdate}/>
-          ))}
+              <EventCard key={event.id} handleDelete={handleDelete} event={event} onUpdate={handleUpdate}/>
+            ))}
       </div>
+    </>
   )
 }
 

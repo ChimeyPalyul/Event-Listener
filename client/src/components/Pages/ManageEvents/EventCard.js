@@ -45,10 +45,10 @@ function EventCard({ handleDelete, event, onUpdate }) {
       <card className ="event-card">
         {eventStatus ? (
           <>
-            <h3>{event.title}</h3>
+            <h3 className='title'>{event.title}</h3>
             <p>{event.description}</p>
-            <button onClick={handleEventStatus}>Edit Event</button> 
-            <button onClick={() => handleEventDelete(event)}>Delete Event</button>
+            <button className="btn glass" onClick={handleEventStatus}>Edit Event</button> 
+            <button className="btn glass" onClick={() => handleEventDelete(event)}>Delete Event</button>
           </>
         ) : (
           <form onSubmit={handleEventUpdate}>

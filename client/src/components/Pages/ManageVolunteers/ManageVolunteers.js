@@ -11,12 +11,14 @@ const ManageVolunteers = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Manage Volunteers</h1>
-      {volunteers.map((volunteer) => (
-            <VolunteerCard key={volunteer.id} name={volunteer.name} email={volunteer.email} registrations={volunteer.registrations}/>
-          ))}
-    </div>
+      <div className='volunteer-container'>
+        {volunteers.map((volunteer) => (
+              <VolunteerCard key={volunteer.id} name={volunteer.name} email={volunteer.email} registrations={volunteer.registrations}/>
+            ))}
+      </div>
+    </>
   )
 }
 
