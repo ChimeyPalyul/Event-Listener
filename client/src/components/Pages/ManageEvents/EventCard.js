@@ -15,7 +15,7 @@ function EventCard({ title, description }) {
 
   return (
     <div>
-      <card>
+      <card className ="event-card">
         {eventStatus ? (
           <>
             <h3>{title}</h3>
