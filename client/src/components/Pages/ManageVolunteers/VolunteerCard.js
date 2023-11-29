@@ -2,7 +2,7 @@ import React from "react";
 
 function VolunteerCard({ name, email, registrations }) {
   return (
-    <div>
+    <div className="volunteer-card">
       <card>
         <h3>{name}</h3>
         <p>{email}</p>
