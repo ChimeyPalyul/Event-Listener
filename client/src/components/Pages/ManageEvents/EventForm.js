@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EventForm = ({ events,addEvent, handlePostStatus }) => {
+const EventForm = ({ addEvent, handlePostStatus }) => {
   const [form, setForm] = useState({
     id: '',
     title: '',

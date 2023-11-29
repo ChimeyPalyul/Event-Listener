@@ -51,7 +51,7 @@ const ManageEvents = () => {
     <div className='event-cards-container'>
       <h1 className = 'manage-events'>Manage Events</h1>
       <button onClick={handleFormStatus} className='add-event-button'>{eventFormButton}</button>
-      {formStatus ? <EventForm addEvent={addEvent}/> : null}
+      {formStatus ? <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus}/> : null}
       {events.map((event) => (
             <EventCard key={event.id} handleDelete={handleDelete} event={event} onUpdate={handleUpdate}/>
           ))}
