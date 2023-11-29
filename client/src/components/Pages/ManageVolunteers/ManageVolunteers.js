@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import VolunteerCard from './VolunteerCard'
 
-const ManageVolunteers = () => {
-  const [volunteers, setVolunteers] = useState([])
-
-  useEffect(() => {
-    fetch("/volunteers")
-      .then((r) => r.json())
-      .then(setVolunteers)
-  }, []);
+const ManageVolunteers = ({ volunteers }) => {
 
   return (
     <div>

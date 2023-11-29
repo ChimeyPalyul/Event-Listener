@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import EventCard from './EventCard'
-import EventForm from './EventForm'
+import React, { useState, useEffect } from "react";
+import EventCard from "./EventCard";
+import EventForm from "./EventForm";
 
-const ManageEvents = () => {
-  const [events, setEvents] = useState([])
-  const [formStatus, setFormStatus] =  useState(false)
-  const [postStatus, setPostStatus] = useState(false)
+const ManageEvents = ({ volunteers }) => {
+  const [events, setEvents] = useState([]);
+  const [formStatus, setFormStatus] = useState(false);
+  const [postStatus, setPostStatus] = useState(false);
 
   useEffect(() => {
     fetch("/events")
       .then((r) => r.json())
-      .then(data => setEvents(data));
+      .then((data) => setEvents(data));
   }, [postStatus]);
 
   function handlePostStatus() {
-    setPostStatus(!postStatus)
+    setPostStatus(!postStatus);
   }
 
   function handleFormStatus() {
-    setFormStatus(!formStatus)
+    setFormStatus(!formStatus);
   }
 
   function handleUpdate(updatedEvent) {
@@ -33,9 +33,9 @@ const ManageEvents = () => {
   }
 
   function addEvent(newEvent) {
-    console.log(newEvent)
-    setEvents([...events, newEvent])
-    console.log(events)
+    console.log(newEvent);
+    setEvents([...events, newEvent]);
+    console.log(events);
   }
 
   function handleDelete(deletedEvent) {
@@ -44,19 +44,30 @@ const ManageEvents = () => {
     );
     setEvents(updatedEvents);
   }
-  
-  const eventFormButton = formStatus ? 'Cancel' : 'Add New Event'
+
+  const eventFormButton = formStatus ? "Cancel" : "Add New Event";
 
   return (
-    <div className='event-cards-container'>
-      <h1 className = 'manage-events'>Manage Events</h1>
-      <button onClick={handleFormStatus} className='add-event-button'>{eventFormButton}</button>
-      {formStatus ? <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus}/> : null}
+    <div className="event-cards-container">
+      <h1 className="manage-events">Manage Events</h1>
+      <button onClick={handleFormStatus} className="add-event-button">
+        {eventFormButton}
+      </button>
+      {formStatus ? (
+        <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus} />
+      ) : null}
       {events.map((event) => (
-            <EventCard key={event.id} handleDelete={handleDelete} event={event} onUpdate={handleUpdate}/>
-          ))}
-      </div>
-  )
-}
+        <EventCard
+          key={event.id}
+          handleDelete={handleDelete}
+          event={event}
+          onUpdate={handleUpdate}
+          handlePostStatus={handlePostStatus}
+          volunteers={volunteers}
+        />
+      ))}
+    </div>
+  );
+};
 
-export default ManageEvents
+export default ManageEvents;

@@ -102,7 +102,7 @@ api.add_resource(Accounts, "/volunteers")
 class AccountById(Resource):
     def get(self, id):
         account = Account.query.filter_by(id=id).first()
-        return account.to_dict(only=("id","name", "role", "username", "email")), 200
+        return account.to_dict(), 200
     
     def patch(self, id):
         account = Account.query.filter_by(id=id).first()
@@ -147,7 +147,7 @@ class Registrations(Resource):
         data = request.get_json()
         try:
             new_registration= Registration(
-                registration_date = data["registration_date"],
+                # registration_date = data["registration_date"],
                 account_id = data["account_id"],
                 opportunity_id = data["opportunity_id"]
             )
