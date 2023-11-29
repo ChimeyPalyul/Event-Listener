@@ -74,7 +74,7 @@ api.add_resource(OpportunityById, "/events/<int:id>")
 
 class Accounts(Resource):
     def get(self):
-        accounts = [account.to_dict(only=("name", "role", "username", "email")) for account in Account.query.all()]
+        accounts = [account.to_dict() for account in Account.query.all()]
         return accounts, 200
     
     def post(self):

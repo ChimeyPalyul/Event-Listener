@@ -83,12 +83,13 @@ if __name__ == '__main__':
         print("seeding accounts...")
         acc = create_accounts()
         db.session.add_all(acc)
-        db.session.commit()
+        
         print("finished seeding accounts")
 
         print("seeding events...")
         opp = create_opportunities()
         db.session.add_all(opp)
+        
         print("finished seeding events")
 
         print("seeding registrations...")
@@ -96,7 +97,7 @@ if __name__ == '__main__':
         reg = create_registration()
         db.session.add_all(reg)
         print("finished seeding registrations")
-
+        db.session.commit()
         print("finished seeding!!")
 
 
