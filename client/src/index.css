@@ -24,27 +24,24 @@
 }
 
 .event-cards-container {
-  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   position: absolute;
   height: 60vh;
   background-color: #fff;
   padding: 2rem; /* Reduce top padding to 1rem */
-  
-}
-
-
+ }
 
 .add-event-button {
-  padding: 10px 5px;
-  font-size: 16px;
-  line-height: 1.5;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #61dafb;
-  color: #fff;
-  cursor: pointer;
+ padding: 5px 5px;
+ font-size: 16px;
+ line-height: 1.5;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ background-color: #61dafb;
+ color: #fff;
+ cursor: pointer;
 }
 
-.manage-events{
-  height:10vh;
-}
+
