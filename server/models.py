@@ -28,9 +28,9 @@ class Account(db.Model, SerializerMixin):
 
     @validates('role')
     def validate_role(self,key,role):
-        r = ["Admin", "User"]
+        r = ["Admin", "Volunteer"]
         if role not in r:
-            raise ValueError('must be Admin or User')
+            raise ValueError('must be Admin or Volunteer')
         return role
 
     def __repr__(self):
