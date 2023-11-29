@@ -48,10 +48,10 @@ const ManageEvents = () => {
   const eventFormButton = formStatus ? 'Cancel' : 'Add New Event'
 
   return (
-    <div>
-      <h1>Manage Events</h1>
-      <button onClick={handleFormStatus}>{eventFormButton}</button>
-      {formStatus ? <EventForm addEvent={addEvent} events={events} handlePostStatus={handlePostStatus} /> : null}
+    <div className='event-cards-container'>
+      <h1 className = 'manage-events'>Manage Events</h1>
+      <button onClick={handleFormStatus} className='add-event-button'>{eventFormButton}</button>
+      {formStatus ? <EventForm addEvent={addEvent}/> : null}
       {events.map((event) => (
             <EventCard key={event.id} handleDelete={handleDelete} event={event} onUpdate={handleUpdate}/>
           ))}

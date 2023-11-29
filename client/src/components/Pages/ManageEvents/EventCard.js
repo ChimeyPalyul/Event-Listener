@@ -42,7 +42,7 @@ function EventCard({ handleDelete, event, onUpdate }) {
 
   return (
     <div>
-      <card>
+      <card className ="event-card">
         {eventStatus ? (
           <>
             <h3>{event.title}</h3>
