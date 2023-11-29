@@ -5,19 +5,44 @@ import EventForm from './EventForm'
 const ManageEvents = () => {
   const [events, setEvents] = useState([])
   const [formStatus, setFormStatus] =  useState(false)
+  const [postStatus, setPostStatus] = useState(false)
 
   useEffect(() => {
     fetch("/events")
       .then((r) => r.json())
       .then(data => setEvents(data));
-  }, []);
+  }, [postStatus]);
+
+  function handlePostStatus() {
+    setPostStatus(!postStatus)
+  }
 
   function handleFormStatus() {
     setFormStatus(!formStatus)
   }
 
+  function handleUpdate(updatedEvent) {
+    const updatedEventFilter = events.map((event) => {
+      if (event.id === updatedEvent.id) {
+        return updatedEvent;
+      } else {
+        return event;
+      }
+    });
+    setEvents(updatedEventFilter);
+  }
+
   function addEvent(newEvent) {
+    console.log(newEvent)
     setEvents([...events, newEvent])
+    console.log(events)
+  }
+
+  function handleDelete(deletedEvent) {
+    const updatedEvents = events.filter(
+      (event) => event.id !== deletedEvent.id
+    );
+    setEvents(updatedEvents);
   }
   
   const eventFormButton = formStatus ? 'Cancel' : 'Add New Event'
@@ -26,9 +51,9 @@ const ManageEvents = () => {
     <div>
       <h1>Manage Events</h1>
       <button onClick={handleFormStatus}>{eventFormButton}</button>
-      {formStatus ? <EventForm addEvent={addEvent}/> : null}
+      {formStatus ? <EventForm addEvent={addEvent} events={events} handlePostStatus={handlePostStatus} /> : null}
       {events.map((event) => (
-            <EventCard key={event.id} title={event.title} description={event.description}/>
+            <EventCard key={event.id} handleDelete={handleDelete} event={event} onUpdate={handleUpdate}/>
           ))}
       </div>
   )

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const EventForm = ({ addEvent }) => {
+const EventForm = ({ events,addEvent, handlePostStatus }) => {
   const [form, setForm] = useState({
-    // id: '',
+    id: events.length + 1,
     title: '',
     description: '',
     start_date: '',
@@ -18,6 +18,7 @@ const EventForm = ({ addEvent }) => {
   };
 
   const handleSubmit = (e) => {
+    console.log(form)
     e.preventDefault();
     fetch("/events", {
         method: "POST",
@@ -27,7 +28,10 @@ const EventForm = ({ addEvent }) => {
         body: JSON.stringify(form),
       })
       .then(r => r.json())
-      .then(newEvent => addEvent(newEvent))
+      .then(newEvent => {
+        addEvent(newEvent)
+        handlePostStatus()
+      })
       .then(setForm({
         // id: '',
         title: '',

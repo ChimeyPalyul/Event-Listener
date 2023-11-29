@@ -1,32 +1,59 @@
 import React, { useState } from "react";
 
-function EventCard({ title, description }) {
+function EventCard({ handleDelete, event, onUpdate }) {
   const [eventStatus, setEventStatus] = useState(true);
-
+  const [form, setForm] = useState({
+    title: '',
+    description: '',
+  });
+  
   function handleEventStatus() {
+    setForm(event)
     setEventStatus(!eventStatus);
   }
-  const editButton = eventStatus ? "Edit Event" : "Update" 
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
   
 
-  function handleEventUpdate() {}
+  function handleEventUpdate() {
+    fetch(`/events/${event.id}`, {
+    method: "PATCH",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(form)
+  })
+  .then(r => r.json())
+  .then(updatedEvent => console.log(updatedEvent))
+  }
 
-  function handleEventDelete() {}
+  function handleEventDelete(event) {
+    console.log(event)
+    fetch(`/events/${event.id}`, {
+        method: "DELETE",
+  })
+    handleDelete(event)
+}
+
+  
 
   return (
     <div>
       <card>
         {eventStatus ? (
           <>
-            <h3>{title}</h3>
-            <p>{description}</p>
+            <h3>{event.title}</h3>
+            <p>{event.description}</p>
             <button onClick={handleEventStatus}>Edit Event</button> 
-            <button onClick={handleEventDelete}>Delete Event</button>
+            <button onClick={() => handleEventDelete(event)}>Delete Event</button>
           </>
         ) : (
           <form onSubmit={handleEventUpdate}>
-            <input type='text' placeholder={title}/>
-            <input type='text' placeholder={description}/>
+            <input type='text' value={form.title} onChange={handleChange} name='title'/>
+            <input type='text' value={form.description} onChange={handleChange} name='description'/>
             <button type="submit">Submit</button>
             <button onClick={handleEventStatus}>x</button>
           </form>

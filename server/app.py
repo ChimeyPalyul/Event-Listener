@@ -13,7 +13,7 @@ from models import Account, Registration, Opportunity
 
 class Opportunities(Resource):
     def get(self):
-        opportunities = [opportunity.to_dict(only=("title", "description", "start_date", "end_date")) for opportunity in Opportunity.query.all()]
+        opportunities = [opportunity.to_dict() for opportunity in Opportunity.query.all()]
         return opportunities, 200
     
     def post(self):
