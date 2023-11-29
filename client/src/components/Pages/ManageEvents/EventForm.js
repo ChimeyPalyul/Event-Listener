@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const EventForm = ({ events,addEvent, handlePostStatus }) => {
   const [form, setForm] = useState({
-    id: events.length + 1,
+    id: '',
     title: '',
     description: '',
     start_date: '',

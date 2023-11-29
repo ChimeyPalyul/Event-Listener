@@ -67,8 +67,8 @@ class Opportunity(db.Model, SerializerMixin):
 
     @validates('description')
     def validate_description(self, key, description):
-        if len(description) < 20:
-            raise ValueError('description must be present and at least 20 characters long ')
+        if len(description) < 5:
+            raise ValueError('description must be present and at least 5 characters long ')
         return description 
 
     def __repr__(self):
