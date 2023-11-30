@@ -33,7 +33,7 @@ function EventCard({
    }
    
 
-   function removeSignup(id) {
+  function removeSignup(id) {
     fetch(`/registrations/${id}`, {
       method: "DELETE"
     })
@@ -102,7 +102,13 @@ function EventCard({
                 <option value={volunteer.id}>{volunteer.name}</option>
               ))}
             </select>
-            <button className="btn glass" onClick={handleAddVolunteer}>Add Volunteer</button>
+            <button 
+            className="btn glass" 
+            onClick={event.registrations.length >= 10 ? null : handleAddVolunteer}
+            disabled={event.registrations.length >= 10}
+            >
+           {event.registrations.length >= 10 ? "Sign Up Full" : "Add Volunteer"}
+            </button>
           </>
         ) : (
           <form onSubmit={handleEventUpdate}>
