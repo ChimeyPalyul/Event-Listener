@@ -44,9 +44,9 @@ const Home = () => {
  return (
    <div className='home'>
      <h1>Home</h1>
-     <button onClick={toggleForm}>Create an Account</button>
+     <button className='toggle-button' onClick={toggleForm}>Create an Account</button>
      {showForm && (
-       <form key={formKey} onSubmit={handleSubmit}>
+       <form className='toggle-create-account' key={formKey} onSubmit={handleSubmit}>
          <label>
            Username:
            <input type="text" name="username" onChange={handleChange} />
