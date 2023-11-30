@@ -75,7 +75,7 @@ const Home = () => {
        </form>
      )}
      <div className='homeP'>
-       <p>
+       <p className='bold'>
          Welcome to Event Listener
        </p>
        <p>
@@ -83,7 +83,7 @@ const Home = () => {
          Step into the world of meaningful connections and community engagement with Event Listener, your gateway to volunteer opportunities that resonate with your passions and skills.
        </p>
 
-       <p>
+       <p className='bold'>
          Why Join Event Listener?
        </p>
 
@@ -103,7 +103,7 @@ const Home = () => {
          Experience Personal Fulfillment: Volunteerism is a source of profound satisfaction and purpose. Immerse yourself in the joy of making a difference and enriching your own life.
        </p>
 
-       <p> 
+       <p className='bold'> 
          Become an Event Listener
        </p>
        <p>
@@ -119,13 +119,13 @@ const Home = () => {
          Connect with Organizations: Reach out to organizations directly to express your interest in volunteering. Most organizations have easily accessible contact information and online forms.
        </p>
 
-       <p>
+       <p className='bold'>
          Join the Movement of Change
        </p>
        <p>
          We invite you to take the first step and become an Event Listener. Your contributions, no matter how big or small, can create a ripple effect of positive change. Together, we can transform our communities and make a lasting impact on the world.
       </p>
-      <p>
+      <p className='bold'>
          Embrace the Spirit of Volunteering
       </p>
       <p>
