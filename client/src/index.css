@@ -41,9 +41,9 @@
 .add-event-button {
  display:flex;
  position:relative;
- height: 50%;
- top: 40%;
- left: 45%;
+ height: 13%;
+ top: 0%;
+ left: 0%;
  padding: 5px 5px;
  font-size: 16px;
  line-height: 1.5;
@@ -107,5 +107,24 @@
   cursor: pointer;
  }
 
+.volunteers{
+  font-size: x-large;
+}
 
+.event-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
 
+ .volunteer-list{
+ border: 1px solid black;
+ padding: 10px;
+ margin: 10px;
+ border-radius: 5px;
+ }

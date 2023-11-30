@@ -72,12 +72,12 @@ function EventCard({
   }
 
   const volunteerList = event.registrations.map((registration) => (
-    <>
+    <div className="volunteer-list">
       <li>
         {registration.account?.name}
-        <button onClick={() => removeSignup(registration.id)}>X</button>
+        <button className="btn btn-circle btn-sm" id = "deleteVolunteerBtn" onClick={() => removeSignup(registration.id)}> <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
       </li>
-    </>
+    </div>
   ));
 
   return (
@@ -87,11 +87,11 @@ function EventCard({
           <>
             <h3 className='title'>{event.title}</h3>
             <p>{event.description}</p>
-            <button onClick={handleEventStatus}>Edit Event</button>
-            <button onClick={() => handleEventDelete(event)}>
+            <button className="btn glass" onClick={handleEventStatus}>Edit Event</button>
+            <button className="btn glass" onClick={() => handleEventDelete(event)}>
               Delete Event
             </button>
-            <h5>Volunteers</h5>
+            <h5 className="volunteers">Volunteers</h5>
             {volunteerList}
             <select
               value={selectedVolunteer}
@@ -102,7 +102,7 @@ function EventCard({
                 <option value={volunteer.id}>{volunteer.name}</option>
               ))}
             </select>
-            <button onClick={handleAddVolunteer}>Add Volunteer</button>
+            <button className="btn glass" onClick={handleAddVolunteer}>Add Volunteer</button>
           </>
         ) : (
           <form onSubmit={handleEventUpdate}>

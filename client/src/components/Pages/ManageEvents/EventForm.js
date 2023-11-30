@@ -43,7 +43,7 @@ const EventForm = ({ addEvent, handlePostStatus }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='event-form'onSubmit={handleSubmit}>
       <label>
         Title:
         <input type="text" name="title" className="input input-bordered input-info w-full max-w-xs" value={form.title} onChange={handleChange} required  />
