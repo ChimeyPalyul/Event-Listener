@@ -8,9 +8,9 @@ import {
 
 function NavBar() {
   return (
-    <div className="container">
-      <h1 className="header">Event Listener</h1>
-      <div className="navbar">
+    <div>
+      <h1>Event Listener</h1>
+      <div>
         <NavLink exact to="/" activeClassName="active-link">
           <AiFillHome />
         </NavLink>
