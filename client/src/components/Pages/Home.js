@@ -42,41 +42,43 @@ const Home = () => {
  }
 
  return (
+  <>
+  <h1 className='home-header'>Welcome to Event Listener</h1>
+  <button className='toggle-button' onClick={toggleForm}>Create an Account</button>
    <div className='home'>
-     <h1>Home</h1>
-     <button className='toggle-button' onClick={toggleForm}>Create an Account</button>
+     
      {showForm && (
        <form className='toggle-create-account' key={formKey} onSubmit={handleSubmit}>
          <label>
            Username:
-           <input type="text" name="username" onChange={handleChange} />
+           <input type="text" name="username" onChange={handleChange} className='rounded-input' />
          </label>
          <label>
            Password:
-           <input type="password" name="password" onChange={handleChange} />
+           <input type="password" name="password" onChange={handleChange} className='rounded-input' />
          </label>
          <label>
            Name:
-           <input type="text" name="name" onChange={handleChange} />
+           <input type="text" name="name" onChange={handleChange} className='rounded-input' />
          </label>
          <label>
            Email:
-           <input type="email" name="email" onChange={handleChange} />
+           <input type="email" name="email" onChange={handleChange} className='rounded-input' />
          </label>
          <label>
            Role:
-           <select name="role" onChange={handleChange}>
+           <select name="role" className='rounded-input' onChange={handleChange}>
              <option value="">Select a role</option>
              <option value="Admin">Admin</option>
              <option value="Volunteer">Volunteer</option>
            </select>
          </label>
-         <input type="submit" value="Submit" />
+         <input type="submit" value="Submit" className='rounded-input' />
        </form>
      )}
      <div className='homeP'>
        <p className='bold'>
-         Welcome to Event Listener
+         What is Event Listener?
        </p>
        <p>
 
@@ -133,6 +135,7 @@ const Home = () => {
        </p>
      </div>
    </div>
+   </>
  )
 }
 
