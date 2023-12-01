@@ -5,7 +5,7 @@ const EventForm = ({ addEvent, handlePostStatus }) => {
     id: '',
     title: '',
     description: '',
-    start_date: '',
+    start_date: '',    
     end_date: '',
     // creator_id: '',
   });
