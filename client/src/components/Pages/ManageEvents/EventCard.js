@@ -73,9 +73,9 @@ function EventCard({
 
   const volunteerList = Array.isArray(event.registrations) && event.registrations.map((registration) => (
     <div className="volunteer-list">
-      <li>
+      <li className="registered-volunteer-name">
         {registration.account?.name}
-        <button className="btn btn-circle btn-sm" id = "deleteVolunteerBtn" onClick={() => removeSignup(registration.id)}> <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+        <button id = "deleteVolunteerBtn" onClick={() => removeSignup(registration.id)}> <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
       </li>
     </div>
   ));
@@ -96,7 +96,7 @@ function EventCard({
             <select
               value={selectedVolunteer}
               onChange={(e) => setSelectedVolunteer(e.target.value)}
-            >
+            className="select-volunteer-dropdown">
               <option>--Select a Volunteer--</option>
               {volunteers.map((volunteer) => (
                 <option value={volunteer.id}>{volunteer.name}</option>
@@ -110,21 +110,23 @@ function EventCard({
             </button>
           </>
         ) : (
-          <form onSubmit={handleEventUpdate}>
+          <form className="event-card" onSubmit={handleEventUpdate}>
             <input
+              className="rounded-input"
               type="text"
               value={form.title}
               onChange={handleChange}
               name="title"
             />
             <input
+              className="rounded-input"
               type="text"
               value={form.description}
               onChange={handleChange}
               name="description"
             />
-            <button type="submit">Submit</button>
-            <button onClick={handleEventStatus}>x</button>
+            <button type="submit" className="btn glass">Submit</button>
+            <button className="btn glass" onClick={handleEventStatus}>Cancel</button>
           </form>
         )}
       </card>

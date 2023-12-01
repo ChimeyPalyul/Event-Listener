@@ -46,19 +46,19 @@ const EventForm = ({ addEvent, handlePostStatus }) => {
     <form className='event-form'onSubmit={handleSubmit}>
       <label>
         Title:
-        <input type="text" name="title" className="input input-bordered input-info w-full max-w-xs" value={form.title} onChange={handleChange} required  />
+        <input type="text" name="title" className="rounded-input" value={form.title} onChange={handleChange} required  />
       </label>
       <label>
         Description:
-        <textarea name="description" className="input input-bordered input-info w-full max-w-xs" value={form.description} onChange={handleChange} required />
+        <input type="text" name="description" className="rounded-input" value={form.description} onChange={handleChange} required />
       </label>
       <label>
         Start Date:
-        <input type="date" name="start_date"className="input input-bordered input-info w-full max-w-xs"  value={form.start_date} onChange={handleChange} required />
+        <input type="date" name="start_date" className="rounded-input"  value={form.start_date} onChange={handleChange} required />
       </label>
       <label>
         End Date:
-        <input type="date" name="end_date" className="input input-bordered input-info w-full max-w-xs" value={form.end_date} onChange={handleChange} required />
+        <input type="date" name="end_date" className="rounded-input" value={form.end_date} onChange={handleChange} required />
       </label>
       {/* <label>
         Creator ID:
