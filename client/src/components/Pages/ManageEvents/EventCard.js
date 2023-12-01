@@ -71,7 +71,7 @@ function EventCard({
     handleDelete(event);
   }
 
-  const volunteerList = event.registrations.map((registration) => (
+  const volunteerList = Array.isArray(event.registrations) && event.registrations.map((registration) => (
     <div className="volunteer-list">
       <li>
         {registration.account?.name}
@@ -104,10 +104,9 @@ function EventCard({
             </select>
             <button 
             className="btn glass" 
-            onClick={event.registrations.length >= 10 ? null : handleAddVolunteer}
-            disabled={event.registrations.length >= 10}
+            onClick={handleAddVolunteer}
             >
-           {event.registrations.length >= 10 ? "Sign Up Full" : "Add Volunteer"}
+           Add Volunteer
             </button>
           </>
         ) : (

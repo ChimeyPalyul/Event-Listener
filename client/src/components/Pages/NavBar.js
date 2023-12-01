@@ -8,23 +8,24 @@ import {
 
 function NavBar() {
   return (
+    <h1 className="header">
     <div className="container">
-      <h1 className="header">Event Listener</h1>
       <div className="navbar">
         <NavLink exact to="/" activeClassName="active-link">
-          <AiFillHome />
+          < AiFillHome className="icon" />
         </NavLink>
         <NavLink to="/manage-users" activeClassName="active-link">
-          <AiOutlineUser />
+          <AiOutlineUser className="icon" />
         </NavLink>
         <NavLink to="/manage-events" activeClassName="active-link">
-          <AiOutlineCalendar />
+          <AiOutlineCalendar className="icon" />
         </NavLink>
       </div>
       <main>
         <Outlet />
       </main>
     </div>
+    Event Listener</h1>
   );
 }
 

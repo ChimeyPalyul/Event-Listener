@@ -8,7 +8,7 @@ function VolunteerCard({ name, email, registrations }) {
         <p><b>Email:</b> {email}</p>
         {registrations.map((registration) => (
           <ul>
-            <h1><b>Event Registrations:</b></h1>
+            <p>--</p>
             <li><b>Event Name:</b> {registration.opportunity.title}
             <ul><b>Event Description:</b> {registration.opportunity.description}</ul>
             </li>

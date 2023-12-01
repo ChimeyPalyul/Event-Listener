@@ -52,8 +52,9 @@ const ManageEvents = ({ volunteers }) => {
      <h1 className = 'manage-events'>Manage Events</h1>
      <div className='event-cards-container'>
      <button onClick={handleFormStatus} className='add-event-button'>{eventFormButton}</button>
+     <div className="event-container">
      {formStatus ? <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus}/> : null}
-     {events.map((event) => (
+     {Array.isArray(events) && events.map((event) => (
        <EventCard
          key={event.id}
          handleDelete={handleDelete}
@@ -63,6 +64,7 @@ const ManageEvents = ({ volunteers }) => {
          volunteers={volunteers}
        />
      ))}
+     </div>
     </div>
   </>
 
