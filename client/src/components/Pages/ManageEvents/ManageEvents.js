@@ -50,26 +50,33 @@ const ManageEvents = ({ volunteers }) => {
 
   return (
     <>
-      <h1>Manage Events</h1>
-      <div>
-        <button onClick={handleFormStatus}>{eventFormButton}</button>
-        {formStatus ? (
-          <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus} />
-        ) : null}
-        {Array.isArray(events) &&
-          events.map((event) => (
-            <EventCard
-              key={event.id}
-              handleDelete={handleDelete}
-              event={event}
-              onUpdate={handleUpdate}
-              handlePostStatus={handlePostStatus}
-              volunteers={volunteers}
-            />
-          ))}
+      <h1 className="page-header">
+        Manage Events{" "}
+        <button className='btn btn-primary' onClick={handleFormStatus}>{eventFormButton}</button>
+      </h1>
+      <div className="container-fluid overflow-auto">
+        <div className="row">
+          {formStatus ? (
+            <EventForm addEvent={addEvent} handlePostStatus={handlePostStatus} />
+          ) : null}
+          {Array.isArray(events) &&
+            events.map((event) => (
+              <div className="card-container" key={event.id}>
+                <EventCard
+                 handleDelete={handleDelete}
+                 event={event}
+                 onUpdate={handleUpdate}
+                 handlePostStatus={handlePostStatus}
+                 volunteers={volunteers}
+                />
+              </div>
+            ))}
+        </div>
       </div>
     </>
-  );
+   );
+  
+ 
 };
 
 export default ManageEvents;

@@ -68,63 +68,99 @@ function EventCard({
     handleDelete(event);
   }
 
-  const volunteerList = Array.isArray(event.registrations) && event.registrations.map((registration) => (
-    <div>
-      <li>
-        {registration.account?.name}
-        <button
-          id="deleteVolunteerBtn"
-          onClick={() => removeSignup(registration.id)}
-        >X</button>
-      </li>
-    </div>
-  ));
+  const volunteerList =
+    Array.isArray(event.registrations) &&
+    event.registrations.map((registration) => (
+      <div className="list-group">
+        <li className="list-group-item">
+          {registration.account?.name}
+          <button
+            id="deleteVolunteerBtn"
+            className="btn btn-secondary"
+            onClick={() => removeSignup(registration.id)}
+          >
+            X
+          </button>
+        </li>
+      </div>
+    ));
 
-  return (
-    <div>
-      <card>
-        {eventStatus ? (
-          <>
-            <h3>{event.title}</h3>
-            <p>{event.description}</p>
-            <button onClick={handleEventStatus}>Edit Event</button>
-            <button onClick={() => handleEventDelete(event)}>
+  const volunteerDropDown = (
+    <>
+      <select
+        className="btn btn-secondary dropdown-toggle"
+        value={selectedVolunteer}
+        onChange={(e) => setSelectedVolunteer(e.target.value)}
+      >
+        <option className="dropdown-item">--Select a Volunteer--</option>
+        {volunteers.map((volunteer) => (
+          <option className="dropdown-item" value={volunteer.id}>
+            {volunteer.name}
+          </option>
+        ))}
+      </select>
+      <button className="btn btn-primary" onClick={handleAddVolunteer}>
+        Add Volunteer
+      </button>
+    </>
+  );
+
+  // ...
+
+return (
+  <div>
+    <div className="card">
+      {eventStatus ? (
+        <div className="card-body">
+          <h3 className="card-title">{event.title}</h3>
+          <p className="card-text">{event.description}</p>
+          <div className="card-buttons-container">
+            <button className="btn btn-primary" onClick={handleEventStatus}>
+              Edit Event
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => handleEventDelete(event)}
+            >
               Delete Event
             </button>
-            <h5>Volunteers</h5>
-            {volunteerList}
-            <select
-              value={selectedVolunteer}
-              onChange={(e) => setSelectedVolunteer(e.target.value)}
-            >
-              <option>--Select a Volunteer--</option>
-              {volunteers.map((volunteer) => (
-                <option value={volunteer.id}>{volunteer.name}</option>
-              ))}
-            </select>
-            <button onClick={handleAddVolunteer}>Add Volunteer</button>
-          </>
-        ) : (
-          <form onSubmit={handleEventUpdate}>
-            <input
-              type="text"
-              value={form.title}
-              onChange={handleChange}
-              name="title"
-            />
-            <input
-              type="text"
-              value={form.description}
-              onChange={handleChange}
-              name="description"
-            />
-            <button type="submit">Submit</button>
-            <button onClick={handleEventStatus}>x</button>
-          </form>
-        )}
-      </card>
+          </div>
+          {volunteerList.length > 0 ? (
+            <>
+              {volunteerDropDown}
+              <h5 className="card-header">Volunteers</h5>
+            </>
+          ) : volunteerDropDown}
+          {volunteerList}
+        </div>
+      ) : (
+        <form onSubmit={handleEventUpdate} className="card-body">
+          <input
+            type="text"
+            value={form.title}
+            onChange={handleChange}
+            name="title"
+            className="form-control card-title"
+          />
+          <input
+            type="text"
+            value={form.description}
+            onChange={handleChange}
+            name="description"
+            className="form-control card-text"
+          />
+          <button className="btn btn-primary" type="submit">
+            Submit
+          </button>
+          <button className="btn btn-danger" onClick={handleEventStatus}>
+            x
+          </button>
+        </form>
+      )}
     </div>
-  );
+  </div>
+ );
+ 
 }
 
 export default EventCard;

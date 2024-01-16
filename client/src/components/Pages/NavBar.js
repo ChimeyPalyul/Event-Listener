@@ -9,18 +9,20 @@ import {
 function NavBar() {
   return (
     <div>
-      <h1>Event Listener</h1>
-      <div>
-        <NavLink exact to="/" activeClassName="active-link">
-          <AiFillHome />
-        </NavLink>
-        <NavLink to="/manage-users" activeClassName="active-link">
-          <AiOutlineUser />
-        </NavLink>
-        <NavLink to="/manage-events" activeClassName="active-link">
-          <AiOutlineCalendar />
-        </NavLink>
-      </div>
+      <h1 className="app-title">
+        <div className="link-container">
+          <NavLink exact to="/" activeClassName="active-link">
+            <AiFillHome className="icon"/>
+          </NavLink>
+          <NavLink to="/manage-users" activeClassName="active-link">
+            <AiOutlineUser className="icon"/>
+          </NavLink>
+          <NavLink to="/manage-events" activeClassName="active-link">
+            <AiOutlineCalendar className="icon"/>
+          </NavLink>
+        </div>
+        Event Listener{" "}
+      </h1>
       <main>
         <Outlet />
       </main>

@@ -2,18 +2,18 @@ import React from "react";
 
 function VolunteerCard({ name, email, registrations }) {
   return (
-    <div className="volunteer-card">
-      <card>
-        <h3>{name}</h3>
-        <p>{email}</p>
+    <div className="card">
+      <div className="card-body">
+        <h3 className="card-title">{name}</h3>
+        <p className="card-header">{email}</p>
         {registrations.map((registration) => (
           <ul>
-            <li>{registration.opportunity.title}
-            <ul>{registration.opportunity.description}</ul>
+            <li className="card-text">{registration.opportunity.title}
+            <ul className="card-text">{registration.opportunity.description}</ul>
             </li>
           </ul>
         ))}
-      </card>
+      </div>
     </div>
   );
 }
